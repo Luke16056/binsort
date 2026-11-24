@@ -1,0 +1,19 @@
+material,label,if_clean,if_dirty,keywords,tip
+plastic_bottle,Plastic bottle,Recycling,General waste,plastic bottle;water bottle;fanta;coke bottle;7up;lucozade;shampoo bottle;milk bottle,Drinks bottle with the Re-turn logo? Bring it back to a Re-turn machine for your deposit.
+drinks_can,Drinks can,Recycling,General waste,can;drinks can;coke can;beer can,Drinks can with the Re-turn logo? Bring it back to a Re-turn machine for your deposit.
+food_tin,Food tin,Recycling,General waste,tin;bean tin;soup tin;tuna tin;pet food tin,Rinse it first.
+plastic_tub,Plastic tub or pot,Recycling,General waste,yoghurt pot;yogurt pot;butter tub;tub;food tray;punnet,Rinse it first. A dirty pot can spoil the whole recycling bin.
+soft_plastic,Soft plastic,Recycling,General waste,plastic bag;bread bag;wrapper;cling film;plastic film;bubble wrap,Clean and dry soft plastics can go in the recycling bin.
+paper,Paper,Recycling,Food/organic,paper;newspaper;magazine;envelope;letter,Keep it clean and dry. Food-soiled paper can go in the food bin. Shiny till receipts (thermal paper) go in general waste.
+cardboard,Cardboard,Recycling,Food/organic,cardboard;box;pizza box;cereal box;egg box,Flatten boxes. Tear off the greasy part of a pizza box for the food bin and recycle the clean part.
+carton,Drinks carton,Recycling,General waste,carton;milk carton;juice carton;tetra pak,Rinse it and squash it.
+foil,Aluminium foil or tray,Recycling,General waste,foil;tin foil;foil tray,Scrunch clean foil into a ball.
+glass_bottle,Glass bottle,Bottle bank,Bottle bank,glass bottle;wine bottle;beer bottle,Rinse it and take off the lid. Glass never goes in your recycling bin.
+glass_jar,Glass jar,Bottle bank,Bottle bank,jar;jam jar;glass jar;sauce jar,Rinse it. The metal lid can go in recycling.
+food_waste,Food waste,Food/organic,Food/organic,food;banana peel;apple core;tea bag;teabag;leftovers;eggshell;bones,No plastic bags in the food bin. Use compostable bags or paper.
+coffee_cup,Takeaway coffee cup,General waste,General waste,coffee cup;takeaway cup;paper cup,Most takeaway cups have a plastic lining. The clean lid and cardboard sleeve can go in recycling.
+polystyrene,Polystyrene,General waste,General waste,polystyrene;styrofoam;foam tray,Polystyrene cannot be recycled at home.
+napkin_tissue,Napkin or tissue,Food/organic,Food/organic,napkin;tissue;kitchen roll;paper towel,
+nappy,Nappy,General waste,General waste,nappy;diaper;wipes;baby wipe,
+battery,Battery,Drop-off point,Drop-off point,battery;batteries,Never put batteries in any bin. Most shops that sell them take them back for free.
+small_electrical,Small electrical item,Drop-off point,Drop-off point,charger;cable;phone;earphones;electrical,Bring to a shop or civic amenity site that takes electrical waste (WEEE).
