@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BinSort</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 520px; margin: 0 auto; padding: 16px; color: #222; }
+    h1 { margin-bottom: 4px; }
+    form { border: 1px solid #ccc; border-radius: 8px; padding: 12px; margin-bottom: 12px; }
+    input[type=text] { width: 100%; padding: 8px; box-sizing: border-box; margin: 8px 0; }
+    button { padding: 8px 14px; cursor: pointer; }
+    .msg { background: #f3f3f3; padding: 8px; border-radius: 6px; }
+    .error { background: #fde2e2; }
+    .item { border-bottom: 1px solid #ddd; padding: 8px 0; }
+    .bin { font-weight: bold; }
+    .tip { font-size: 0.9em; color: #555; }
+    .fb button { font-size: 0.8em; padding: 2px 8px; }
+  </style>
+</head>
+<body>
+  <h1>BinSort</h1>
+  <p>Take one photo of your rubbish and find out which bin each item goes in.</p>
+
+  <form id="photo-form">
+    <label>Photo of your rubbish<br>
+      <input type="file" name="photo" accept="image/*" capture="environment" required>
+    </label>
+    <button type="submit">Sort my rubbish</button>
+  </form>
+
+  <form id="text-form">
+    <label>Or type an item
+      <input type="text" name="text" placeholder="e.g. dirty yoghurt pot">
+    </label>
+    <button type="submit">Check</button>
+  </form>
+
+  <div id="results"></div>
+
+<script>
+const results = document.getElementById("results");
+
+function show(data) {
+  results.innerHTML = "";
+  const msg = document.createElement("p");
+  msg.className = "msg" + (data.error || data.ai_down ? " error" : "");
+  msg.textContent = data.error || data.message;
+  results.appendChild(msg);
+  if (data.ai_down) document.querySelector("#text-form input").focus();
+
+  (data.items || []).forEach((item, i) => {
+    const div = document.createElement("div");
+    div.className = "item";
+    let bin = item.bin;
+    if (item.bin === "Depends") bin = "If clean: " + item.if_clean + ". If dirty: " + item.if_dirty + ".";
+    div.innerHTML = `<div>${i + 1}. <span class="name"></span> <span class="bin"></span></div>
+                     <div class="tip"></div>
+                     <div class="fb">Was this right? <button data-ok="1">Yes</button> <button data-ok="0">No</button></div>`;
+    div.querySelector(".name").textContent = item.name + ":";
+    div.querySelector(".bin").textContent = bin;
+    div.querySelector(".tip").textContent = item.tip || "";
+    div.querySelectorAll(".fb button").forEach(b => b.onclick = async () => {
+      await fetch("/feedback", {method: "POST", headers: {"Content-Type": "application/json"},
+                                body: JSON.stringify({result: item, ok: b.dataset.ok === "1"})});
+      div.querySelector(".fb").textContent = "Thanks!";
+    });
+    results.appendChild(div);
+  });
+}
+
+async function send(form) {
+  results.innerHTML = '<p class="msg">Sorting...</p>';
+  try {
+    const response = await fetch("/sort", {method: "POST", body: new FormData(form)});
+    show(await response.json());
+  } catch (e) {
+    show({error: "Could not reach BinSort. Is the app running?"});
+  }
+}
+
+document.getElementById("photo-form").onsubmit = e => { e.preventDefault(); send(e.target); };
+document.getElementById("text-form").onsubmit = e => { e.preventDefault(); send(e.target); };
+</script>
+</body>
+</html>
